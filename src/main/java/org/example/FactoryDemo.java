@@ -3,11 +3,7 @@ package org.example;
 public class FactoryDemo {
     public void run() {
         Animal animal = AnimalFactory.createAnimal("dog");
-        if (animal != null){
-            animal.speak();
-        } else {
-            System.out.println("Animal unrecognized");
-        }
+        animal.speak();
     }
 
     // Common interface
@@ -27,8 +23,7 @@ public class FactoryDemo {
         public static Animal createAnimal(String type) {
             return switch (type.toLowerCase()) {
                 case "dog"->new Dog();
-                default->null;
-            };
+                default -> throw new IllegalArgumentException("Unknown animal type: " + type);            };
         }
     }
 }
